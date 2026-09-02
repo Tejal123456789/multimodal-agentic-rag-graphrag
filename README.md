@@ -43,3 +43,17 @@ GraphRAG
 Report Summary QA
 
 integrated through a query routing layer.
+
+## GraphRAG Pipeline
+
+Source Documents
+→ Document Chunking
+→ Document Summarization
+→ Topic Extraction
+→ Topic Embedding Generation
+→ Semantic Similarity Calculation
+→ Knowledge Graph Construction
+→ Community Detection
+→ Community Summary Generation
+→ Community-Based QA
+→ Answer Generation
