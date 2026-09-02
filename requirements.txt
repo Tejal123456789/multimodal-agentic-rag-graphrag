@@ -1,0 +1,13 @@
+streamlit
+chromadb
+sentence-transformers
+ollama
+networkx
+matplotlib
+pymupdf
+pillow
+numpy
+pandas
+scikit-learn
+torch
+transformers
