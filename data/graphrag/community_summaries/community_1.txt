@@ -1,0 +1,26 @@
+**Main Research Area:**
+The primary focus of the collected research papers is the intersection of artificial intelligence (AI) with creativity, with a particular emphasis on creative AI and machine learning (ML) applications in the fields of art, design, and software product management.
+
+**Common Themes:**
+- The transformative impact of generative AI on creative processes and software product management.
+- The use of AI as a collaborative tool for enhancing human creativity in various domains, including game design, music, sound, and visual arts.
+- The ethical considerations, limitations, and potential biases in AI-generated content and the importance of human oversight.
+- The exploration of AI in fulfilling Sustainable Development Goals (SDGs) through creative and collaborative efforts.
+- The potential of AI in automating tasks, improving decision-making, and enhancing the quality and productivity of creative work.
+
+**Key Methods:**
+- Systematic literature reviews to evaluate the impact and applications of generative AI in creative domains.
+- Development and assessment of software documentation quality across different dimensions.
+- Empirical studies involving human experts to evaluate and improve AI-generated documentation.
+- Comparisons of generative AI with human intelligence in the context of software product management and documentation.
+
+**Important Findings:**
+- Generative AI can significantly enhance creativity and efficiency in various artistic and design fields, as well as in software product management.
+- The integration of AI into creative processes presents both opportunities for innovation and challenges related to ethics, bias, and human-machine collaboration.
+- There is a need for comprehensive frameworks and quality dimensions to evaluate and improve the effectiveness of AI-generated content.
+- AI has the potential to contribute to social and environmental goals when applied creatively, but it requires careful consideration of ethical implications and sustainability.
+
+**Non-recommended Uses of Generative AI:**
+- Generative AI should not replace human creativity but rather serve as a tool to augment and enhance human artistic endeavors.
+- AI-generated content must be carefully monitored to avoid perpetuating biases, misinformation, and inappropriate or unethical outputs.
+- The limitations of current AI systems necessitate the involvement of human researchers and practitioners to ensure responsible and meaningful use of AI in creative fields.
