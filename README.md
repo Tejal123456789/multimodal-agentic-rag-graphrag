@@ -33,3 +33,13 @@ to answer:
 - Sentence Transformers
 - NetworkX
 - Matplotlib
+
+## System Architecture
+
+Multimodal Agentic RAG
++
+GraphRAG
++
+Report Summary QA
+
+integrated through a query routing layer.
