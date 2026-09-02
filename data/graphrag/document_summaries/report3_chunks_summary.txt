@@ -1,0 +1,62 @@
+Transform the provided document into an intermediate SQL skeleton using a structured approach. Begin by breaking the guide into simpler sub-questions:
+
+1. How can we summarize the challenges addressed in the text into a series of sub-questions that need to be answered to create an intermediate SQL skeleton?
+2. What are the specific details in the text that can be extracted to form the basis of rules for SQL correction?
+3. How can the examples provided in the text be used to create few-shot in-context-learning demonstrations for the SQL generation process?
+4. How can the divide-and-conquer generation technique be applied to break down complex questions into simpler SQL queries?
+5. How can consistency among multiple SQL candidates be achieved through the process described in the text?
+
+Based on these sub-questions, we can now create an intermediate SQL skeleton that addresses the challenges and incorporates the elements mentioned in the text. Here's a potential intermediate SQL skeleton:
+
+```sql
+-- Summarize challenges into SQL queries
+-- Challenge 1: Detecting underlying database insights
+-- Sub-questions: What tables and columns are needed for a given question?
+-- SQL Skeleton:
+SELECT TableName, ColumnName
+FROM SchemaInformation
+WHERE TableName IN ('Patient', 'Examination') -- Assuming Patient and Examination are tables in the schema
+AND ColumnName = 'Diagnosis'; -- Diagnosis is the column we are interested in
+
+-- Challenge 2: Capturing recurring model errors
+-- Sub-questions: How to correct SQL errors such as incorrect data type usage?
+-- SQL Skeleton:
+-- Rule for integer division vs floating-point division:
+SELECT CAST(SUM(CASE WHEN Diagnosis = 'PSS' THEN 1 ELSE 0 END) AS REAL) / CAST(SUM(CASE WHEN Diagnosis = 'SLE' THEN 1 ELSE 0 END) AS REAL) AS PSS_SLE_Ratio
+FROM Examination
+WHERE ID = '3'; -- Assuming ID is a unique identifier for patients
+
+-- Rule for missing table joins:
+-- SQL Skeleton:
+-- Assuming we need to join Patient and Examination tables to find the patient-level final diagnosis
+SELECT p.Diagnosis
+FROM Patient p
+JOIN Examination e ON p.ID = e.PatientID
+WHERE p.ID = '3';
+
+-- Few-shot in-context-learning demonstration
+-- Sub-questions: How to select relevant examples for SQL generation?
+-- SQL Skeleton:
+-- Example SQL after applying few-shot learning:
+SELECT Patient.Diagnosis AS FinalDiagnosis
+FROM Patient
+WHERE Patient.ID = '3';
+-- This example would be part of a few-shot learning set where similar queries are shown to the model to improve its generation accuracy.
+
+-- Divide-and-conquer generation
+-- Sub-questions: How to break down complex questions into simpler SQL queries?
+-- SQL Skeleton:
+-- Complex question: "What is the ratio of examinations diagnosed as PSS to SLE for patient 3?"
+-- Step 1: Select all examinations for patient 3
+-- Step 2: Count PSS diagnoses
+-- Step 3: Count SLE diagnoses
+-- Step 4: Calculate the ratio
+```
+
+The rules for SQL correction can be derived from the recurring errors mentioned in the text. For example, if an LLM generates an incorrect SQL statement due to integer division instead of floating-point division, a rule can be created to automatically cast the numerator and denominator to REAL before performing the division.
+
+The few-shot in-context-learning demonstrations can be created by using similar SQL queries that have been shown to the model to help it understand the context and improve its generation accuracy.
+
+The divide-and-conquer technique can be applied by breaking down complex questions into simpler SQL queries that can be executed sequentially to arrive at the final result. For example, to answer a complex question, we can first retrieve the relevant data, then apply filtering, aggregation, and finally, calculate the desired metric.
+
+Consistency among multiple SQL candidates can be achieved by having a validation step where the generated SQL queries are executed against the database to check for correctness and consistency with the expected results. If inconsistencies are found, they can be corrected using the rules created for SQL correction.

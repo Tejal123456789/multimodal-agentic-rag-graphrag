@@ -1,0 +1,69 @@
+Colasanto et al. (2022) use a BERT sentiment score to form Black–Litterman views, Lee et al. (2025) translate LLM forecasts and predictive uncertainty into views and confidence levels, and Chen (2025) and Taheripour et al. (2025) adjust MVO-style expected-return inputs directly. Predictive uncertainty has been used for trade sizing by Spears et al. (2020), but at the single-position level rather than as a cross-asset portfolio covariance. Kargarzadeh (2024) develops a small-capitalization trading framework that combines LLM-scored financial news with macroeconomic and technical signals, and motivates decomposing news-enhanced multimodal pipeline for return prediction and portfolio allocation.
+Data and feature construction
+Multimodal encoders and temporal representation
+Predictive moments and uncertainty estimation
+Portfolio weight allocation
+Daily OHLCV data
+Raw daily data
+open, high, low, close, volume
+Feature engineering
+returns, volatility, momentum
+T-day daily tensor
+Stock selection filter (gate for news)
+Self trigger
+abnormal own return
+Indicator trigger
+direction-consistent linked shock
+Asset/date mapping
+Summarization
+LLM sentiment scoring
+30-day rolling deduplication
+Daily sentiment + coverage
+T-day news tensor
+Daily temporal encoder
+News temporal encoder
+Concatenate embeddings
+Sequential encoder
+Cross-asset representation
+MC-dropout at inference
+Mean head
+Covariance head
+Predictive mean
+Aleatoric covariance
+Epistemic covariance
+Total covariance
+Arithmetic-return moments
+Predicted moments
+from C
+Pre-balance holdings
+Weight allocation strategies
+1. Risk-aware MVO
+uses
+2. Equal Weight
+uniform allocation
+3. Risk Parity
+equal risk shares
+4. Hierarchical RP
+cluster-based weights
+5. Black–Litterman
+prior + views
+6. Bayesian BL
+posterior update
+Target portfolio weights
+compared across methods
+At least one trigger selects a stock–date pair for news processing
+Self-triggered
+Indicator-triggered
+Pure Alpha
+Pure Beta
+Indicator only
+Selected stock–date pairs
+Figure 2: End-to-end trading pipeline. The experiment begins with a Russell 2000 price and news panel, resolves a tradable cross-section using one of three macro-beta trigger legs, clusters related articles into news-summary sentiment features, and trains a return-distribution network that outputs both expected returns and predictive uncertainty. The same predicted moments are then passed to six allocation rules, allowing the benchmark to isolate the effects of the stock-selection regime, sentiment scorer, target distribution, and portfolio construction method. We test that full chain by feeding model-predicted covariance directly into the portfolio stage and evaluating whether performance depends on the sentiment backend, return target, allocator, holding period, transaction cost, and stock-selection regime.
+Methodology
+For assets i ∈{1, . . . , N} and trading days t, our target is the forward log-return vector y(H)t ∈RN over horizon H.
+Rather than predicting return alone, we estimate the full conditional return distribution – its mean and covariance, ˆµt = E[y(H)t | Ft] and ˆΣt = Cov(y(H)t | Ft) – since it is the co-variance estimate that ultimately distinguishes our portfolio construction from prior work. Figure 2 gives the full workflow. The remainder of this section follows the pipeline end to end: how the tradable universe is selected (Section 3.1), how news becomes a daily sentiment signal (Section 3.2), how that signal becomes a joint return-and-risk prediction (Section 3.3), and how that prediction becomes a portfolio (Section 3.4). Dataset and experimental protocol are described in Section 4.
+Stock Selection
+We compare three ways to define the traded cross-section, each decomposing a macro-beta trigger into a separate event set. All three start from the same eligible Russell 2000 pool and define a stock-side event set SS and an indicator-side event set SI. A stock’s own movement is flagged via its return z-score, Z = R −µ σ (1) and its relationship to a given indicator is measured via beta, β = Cov(Ri, Rind) Var(Rind) (2) computed over a rolling window against a curated panel of macroeconomic releases, commodities, currencies, rates, volatility, world-index, and sector-ETF indicators (details in Appendix A). An indicator trigger fires when an indicator has an abnormal move and the stock is sufficiently exposed to that indicator; a stock trigger fires when the stock itself has an abnormal move. Following the small-capitalization LLM-driven trading framework of Kargarzadeh (2024), the three selection legs are pure alpha, SS ∩ SI; pure beta, SI \ SS; and beta, SI ∩ SS. Pure alpha isolates firm-specific abnormal moves not contemporaneously explained by macro indicators. Pure beta is the anticipatory macro leg: an indicator has moved for a levered stock, but the stock itself has not yet registered its own abnormal move. Beta is the confirmatory leg, where stock and indicator triggers fire together and agree on direction. In all three regimes, candidates are ranked using only in-sample BUY events and capped at 50 names for model training and back-testing. At allocation time, the filter acts as a mask: the predictive model still emits full return and covariance forecasts, but the allocator may hold only names with an active BUY signal under the selected leg.
+From News to Sentiment
+Much of the LLM-sentiment trading literature scores individual headlines or articles as independent observations (Section 2). We instead treat sentiment as a property of a story, not an article: multiple outlets frequently cover the same event, and scoring each report separately lets syndicated coverage dominate a signal simply by being repeated, not by being informative. For each article–asset pair, the sentiment model returns a calibrated probability distribution over negative, neutral, and positive outcomes. These probabilities are transformed into a final normalized sentiment surprise through entity-prior correction, strictly trailing rolling demeaning, and group-day cross-sectional standardization. The exact scoring and normalization formulas are reported in Appendix B.
+We then collapse repeated coverage before it reaches the model. Within a trailing 30-day window, article summaries are embedded and clustered by single-linkage agglomerative clustering using cosine distance as the merge criterion, merging two articles into the same story once their similarity reaches 0.90. Each resulting cluster is treated as one underlying story. For every story cluster, only the article nearest to the cluster centroid is retained as the representative news item; all other articles in that cluster are treated as duplicate coverage. The clustering, centroid, and representative-selection formulas are given in Appendix B. The daily sentiment feature ¯si,d is then computed from these representative articles and paired with a log-scaled story count as a coverage-volume feature. Neither the scoring nor the normalization formulas are provided in the original text, as they are complex and specific to the study's methodology.

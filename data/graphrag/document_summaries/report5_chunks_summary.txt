@@ -1,0 +1,15 @@
+The main topic of this systematic review is the use of natural language processing (NLP) in customer service. This paper aims to analyze the existing articles and studies on this topic, focusing on research domain, applications, datasets used, and evaluation methods. It also discusses future directions in this field and the limitations faced by researchers.
+
+The key contributions of this systematic review include:
+
+1. Identification of the application fields of NLP in customer service: The review found that chatbot and question-answering systems are the most commonly used applications of NLP in customer service.
+
+2. Overview of the datasets used in customer services research: The majority of the studies used their own original datasets in addition to the Twitter dataset. The most frequently used datasets were in the fields of social networking, e-commerce, and general areas.
+
+3. Analysis of evaluation methods used in NLP in customer services research: The most commonly used evaluation methods were accuracy, precision, recall, and F1 score.
+
+4. Discussion of future research directions in NLP for customer service: The review identified the need for improving the performance of models and the size of datasets used, as well as better understanding users' behavior and emotions.
+
+5. Identification of the most significant limitations in the reviewed studies: The most significant limitation was the dataset's volume, diversity, and quality, as it can have a huge impact on the outcomes. Other limitations included the diversity of languages, techniques, and models used.
+
+In conclusion, this systematic review provides a comprehensive analysis of the use of NLP in customer service, highlighting the key contributions, important methods, and future research directions. It also identifies the limitations faced by researchers in this area and emphasizes the need for further studies to improve the performance of models and the size of datasets used.
