@@ -1,0 +1,121 @@
+{
+    "report10": [
+        {
+            "report": "report11",
+            "similarity": 0.5932000279426575
+        },
+        {
+            "report": "report15",
+            "similarity": 0.5156000256538391
+        }
+    ],
+    "report11": [
+        {
+            "report": "report10",
+            "similarity": 0.5932000279426575
+        },
+        {
+            "report": "report16",
+            "similarity": 0.5182999968528748
+        }
+    ],
+    "report12": [],
+    "report13": [],
+    "report14": [
+        {
+            "report": "report16",
+            "similarity": 0.5654000043869019
+        }
+    ],
+    "report15": [
+        {
+            "report": "report10",
+            "similarity": 0.5156000256538391
+        },
+        {
+            "report": "report16",
+            "similarity": 0.5924000144004822
+        }
+    ],
+    "report16": [
+        {
+            "report": "report11",
+            "similarity": 0.5182999968528748
+        },
+        {
+            "report": "report14",
+            "similarity": 0.5654000043869019
+        },
+        {
+            "report": "report15",
+            "similarity": 0.5924000144004822
+        },
+        {
+            "report": "report7",
+            "similarity": 0.5167999863624573
+        },
+        {
+            "report": "report8",
+            "similarity": 0.5231000185012817
+        }
+    ],
+    "report17": [
+        {
+            "report": "report18",
+            "similarity": 0.527899980545044
+        }
+    ],
+    "report18": [
+        {
+            "report": "report17",
+            "similarity": 0.527899980545044
+        },
+        {
+            "report": "report19",
+            "similarity": 0.5727999806404114
+        }
+    ],
+    "report19": [
+        {
+            "report": "report18",
+            "similarity": 0.5727999806404114
+        }
+    ],
+    "report1": [],
+    "report20": [],
+    "report2": [],
+    "report3": [],
+    "report4": [],
+    "report5": [],
+    "report6": [],
+    "report7": [
+        {
+            "report": "report16",
+            "similarity": 0.5167999863624573
+        },
+        {
+            "report": "report8",
+            "similarity": 0.6901000142097473
+        },
+        {
+            "report": "report9",
+            "similarity": 0.6129999756813049
+        }
+    ],
+    "report8": [
+        {
+            "report": "report16",
+            "similarity": 0.5231000185012817
+        },
+        {
+            "report": "report7",
+            "similarity": 0.6901000142097473
+        }
+    ],
+    "report9": [
+        {
+            "report": "report7",
+            "similarity": 0.6129999756813049
+        }
+    ]
+}
